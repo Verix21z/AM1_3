@@ -1,13 +1,12 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React,{JSX, useState} from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import {SafeAreaView } from "react-native-safe-area-context";
 import {ImagePlayer, MusicPlayer,VidPlayer} from "../Components/MediaPlayer/MPLayout";
 import { useDarkMode } from "../Components/FileLoader/DarkModeContext";
 import { Asset } from "expo-asset";
 import { Dimensions } from "react-native";
 import AntDesign from '@expo/vector-icons/AntDesign';
-
 
 export default function PlayerScreen():JSX.Element{
     const { darkMode } = useDarkMode();
@@ -36,12 +35,14 @@ export default function PlayerScreen():JSX.Element{
     var container=initComponent();
 
     return(
-        <SafeAreaView style={[styles.container,darkMode&&styles.darkcontainer]}>
+        <SafeAreaView style={[styles.container, darkMode && styles.darkcontainer]}>
             <View style={styles.header}>
-                <AntDesign name="arrow-left" size={24} color="black" />
+                <TouchableOpacity onPress={() => nav.goBack()}>
+                    <AntDesign name="arrow-left" size={24} color={darkMode ? "white" : "black"} />
+                </TouchableOpacity>
             </View>
+
             {container}
-            
         </SafeAreaView>
     );
 }
@@ -62,13 +63,8 @@ const styles=StyleSheet.create({
     header:{
         height:"auto",
         width:"100%",
-        position:"relative",
-        backgroundColor:"red",
-        flexDirection:"row"
+        padding:12,
+        flexDirection:"row",
+        alignItems:"center"
     }
-    
 })
-
-/*
-<Text>{route.params["filename"]}</Text>
-            <Image source={filest.ExampleFiles[route.params["filename"]] }></Image>*/

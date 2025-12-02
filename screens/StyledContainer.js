@@ -12,7 +12,7 @@ const StyledContainer = ({ children, title, subtitle }) => {
       <View style={[styles.backgroundCircle2, darkMode && styles.darkBackgroundCircle2]} />
       <View style={[styles.backgroundCircle3, darkMode && styles.darkBackgroundCircle3]} />
       
-      <ScrollView 
+      <View 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={true}
       >
@@ -37,7 +37,7 @@ const StyledContainer = ({ children, title, subtitle }) => {
             <View style={[styles.dot, { backgroundColor: '#FF2D55' }]} />
           </View>
         </View>
-      </ScrollView>
+      </View>
     </View>
   );
 };
